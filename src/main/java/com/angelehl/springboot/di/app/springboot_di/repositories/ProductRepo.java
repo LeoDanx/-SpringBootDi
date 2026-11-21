@@ -15,7 +15,7 @@ public class ProductRepo {
             new Product(1L,"Memoria Cosair 32",300L),
             new Product(2L, "Cpu Intel Core i9", 850L),
             new Product(3L, "Teclado Razer Mini", 600L),
-            new Product(3L, "Mother Gigabyte", 490L)
+            new Product(4L, "Mother Gigabyte", 490L)
 
         );
     } 
