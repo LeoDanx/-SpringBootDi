@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/api")
 public class SomeController {
 
+    //El repo esta en memoria en este punto
     private ProductService service = new ProductService();
 
     @GetMapping

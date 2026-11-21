@@ -19,10 +19,18 @@ public class ProductService {
        
         return repository.findAll().stream().map(p->{
             Double priceImp = p.getPrice()*1.25;
-            Product newProd = new Product(p.getId(), p.getName(),priceImp.longValue());
+            //De este modo no se utiliza siempre el mismo producto, sino que en cada llamada, se crea uno nuevo
+            //Product newProd = new Product(p.getId(), p.getName(),priceImp.longValue());
 
+            //Esta linea modificaba el objeto que todas las peticiones compartían
             //p.setPrice(priceImp.longValue());
-            return p;
+            //return p;
+
+            //Guardo una copia de mi objeto,NO el objeto, por lo que apunta a una espacion de memoria distinto
+            Product newProd = (Product)p.clone();
+            newProd.setPrice(priceImp.longValue());
+            
+            return newProd;
 
         }).collect(Collectors.toList());
     }
