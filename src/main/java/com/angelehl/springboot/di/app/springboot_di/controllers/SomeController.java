@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.angelehl.springboot.di.app.springboot_di.models.Product;
-import com.angelehl.springboot.di.app.springboot_di.services.ProductServiceImpl;
+import com.angelehl.springboot.di.app.springboot_di.services.ProductService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController 
@@ -18,7 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SomeController {
 
     //El repo esta en memoria en este punto
-    private ProductServiceImpl service = new ProductServiceImpl();
+    //private ProductServiceImpl service = new ProductServiceImpl();
+
+    //@Autowired 
+    //private ProductServiceImpl service;
+
+    //Implemetnamos un atributo mas generico para NO casarnos con una implementacion
+    //Inyectamos una interfaz en lugar de una implementación concreta
+    @Autowired 
+    private ProductService service;
 
     @GetMapping
     public List<Product> list(){

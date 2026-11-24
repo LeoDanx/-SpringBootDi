@@ -3,16 +3,31 @@ package com.angelehl.springboot.di.app.springboot_di.services;
 import java.util.List;     
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.angelehl.springboot.di.app.springboot_di.models.Product;
+import com.angelehl.springboot.di.app.springboot_di.repositories.ProductRepo;
 import com.angelehl.springboot.di.app.springboot_di.repositories.ProductRepoImpl;
+
 //Capa de datos
+//@Component 
+@Service 
 public class ProductServiceImpl implements ProductService{
 
      //No interactua directamente con la bd
     //pero inyecta los metodos que si lo hacen
     //logica de negocio
 
-    private ProductRepoImpl repository = new ProductRepoImpl();
+    //@Autowired//Con esta anotacion proveemos a la clase ProductServiceImpl de una instancia de repository que gestionara en auto el contenedor de Spring
+    //Principio Hollywood
+    //private ProductRepoImpl repository = new ProductRepoImpl();
+
+    //Implementamos un atributo mas generico para NO casarnos con una implementacion
+    //Inyectamos una interfaz en lugar de una implementación concreta
+    @Autowired 
+    private ProductRepo repository;
 
     @Override 
     public List<Product> findAll(){
