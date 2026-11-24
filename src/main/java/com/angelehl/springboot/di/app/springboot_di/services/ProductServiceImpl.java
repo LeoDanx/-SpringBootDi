@@ -26,8 +26,20 @@ public class ProductServiceImpl implements ProductService{
 
     //Implementamos un atributo mas generico para NO casarnos con una implementacion
     //Inyectamos una interfaz en lugar de una implementación concreta
-    @Autowired 
+    //@Autowired Lo quitamos para inyectar mediante constructor o setter
     private ProductRepo repository;
+
+    //Esta es la alternativa
+    /*@Autowired 
+    public void setRepository(ProductRepo repository) {
+        this.repository = repository;
+    }*/
+
+    //Es otra alternativa
+    //No es necesario el @autowired
+    public ProductServiceImpl(ProductRepo repository) {
+        this.repository = repository;
+    }
 
     @Override 
     public List<Product> findAll(){
@@ -55,5 +67,7 @@ public class ProductServiceImpl implements ProductService{
 
         return repository.findById(Id);
     }
+
+  
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.angelehl.springboot.di.app.springboot_di.models.Product;
 import com.angelehl.springboot.di.app.springboot_di.services.ProductService;
+import com.angelehl.springboot.di.app.springboot_di.services.ProductServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,18 +23,24 @@ public class SomeController {
     //private ProductServiceImpl service = new ProductServiceImpl();
 
     //@Autowired 
-    //private ProductServiceImpl service;
+    private ProductServiceImpl service;
 
     //Implemetnamos un atributo mas generico para NO casarnos con una implementacion
     //Inyectamos una interfaz en lugar de una implementación concreta
-    @Autowired 
-    private ProductService service;
+    //@Autowired 
+    //private ProductService service;
+
+    //Otra alternativa
+    public SomeController(ProductServiceImpl service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Product> list(){
 
         return service.findAll();
     }
+
 
       @GetMapping("/{id}")
     public Product show(@PathVariable Long id){
