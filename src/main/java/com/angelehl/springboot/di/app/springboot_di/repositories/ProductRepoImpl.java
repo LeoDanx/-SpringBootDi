@@ -6,11 +6,15 @@ import java.util.List;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.angelehl.springboot.di.app.springboot_di.models.Product;
 
 //@Component
-@Primary  
+@Primary 
+//@RequestScope //deja de ser singleton, cada petición ya no es compartida por todos los usuarios 
+//@SessionScope //mas amplio que el request pero mas estrecho que el singleton
 @Repository("productList") 
 public class ProductRepoImpl implements ProductRepo{
 
