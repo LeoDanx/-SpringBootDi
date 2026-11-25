@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Playstation 5",
+        "price": 1000
+    },
+    {
+        "id": 2,
+        "name": "Abrigo Navy",
+        "price": 400
+    },
+    {
+        "id": 3,
+        "name": "Refirgerador",
+        "price": 300
+    },
+    {
+        "id": 4,
+        "name": "Chaqueta Pluma",
+        "price": 612
+    }
+
+]
