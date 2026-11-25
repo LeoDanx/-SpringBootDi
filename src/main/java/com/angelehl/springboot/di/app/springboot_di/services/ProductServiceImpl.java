@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class ProductServiceImpl implements ProductService{
 
     //Implementamos un atributo mas generico para NO casarnos con una implementacion
     //Inyectamos una interfaz en lugar de una implementación concreta
-    //@Autowired Lo quitamos para inyectar mediante constructor o setter
+    // @Autowired Comentamos para inyectar por constructor
+    // @Qualifier("productFoo")
     private ProductRepo repository;
 
     //Esta es la alternativa
@@ -37,9 +39,10 @@ public class ProductServiceImpl implements ProductService{
 
     //Es otra alternativa
     //No es necesario el @autowired
-    public ProductServiceImpl(ProductRepo repository) {
-        this.repository = repository;
-    }
+    //productFoo es el nombre del repo seleccionado para esta implementación
+    public ProductServiceImpl(@Qualifier("productFoo") ProductRepo repository) {//el qualifier inicia por defecto en minúscula, se inyecta el repo que no es rprimary
+         this.repository = repository;
+     }
 
     @Override 
     public List<Product> findAll(){
